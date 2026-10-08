@@ -1,0 +1,4 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Booking Confirmed - Skill Cap</title><link rel="stylesheet" th:href="@{/css/app.css}"></head>
+<body><nav class="nav"><div class="container nav-inner"><a class="brand" th:href="@{/}">Skill Cap</a><a th:href="@{/slots}">Available Slots</a><a th:href="@{/customer/appointments}">My Appointments</a></div></nav><main class="container"><section class="card auth-card center"><div class="check">✓</div><h2>Booking confirmed</h2><p class="lead">Your coaching session was booked successfully.</p><div class="actions" style="justify-content:center"><a class="button" th:href="@{/customer/appointments}">View My Appointments</a><a class="button secondary" th:href="@{/slots}">Book Another</a></div></section></main></body></html>

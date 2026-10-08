@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Skill Cap</title><link rel="stylesheet" th:href="@{/css/app.css}"></head>
+<body>
+<nav class="nav"><div class="container nav-inner"><a class="brand" th:href="@{/}">Skill Cap</a><a th:href="@{/slots}">Available Slots</a><a th:if="${session.role == 'CUSTOMER'}" th:href="@{/customer/appointments}">My Appointments</a><a th:if="${session.role == 'PROVIDER'}" th:href="@{/provider/dashboard}">Provider Dashboard</a><a th:if="${session.userId == null}" th:href="@{/login}">Login</a><form th:if="${session.userId != null}" th:action="@{/logout}" method="post"><button class="link-button">Logout</button></form></div></nav>
+<main class="container">
+  <section class="hero">
+    <div><div class="eyebrow">Game coaching made simple</div><h1>Break your skill cap.</h1><p class="lead">Browse coaching sessions, reserve an available time, and track every appointment in one place.</p><div class="actions"><a class="button" th:href="@{/slots}">View Available Slots</a><a class="button secondary" th:if="${session.userId == null}" th:href="@{/login}">Login</a></div></div>
+    <div class="card"><h2>Platform summary</h2><div class="stats"><div class="stat"><strong th:text="${summary.providerCount}">1</strong><span>Coach</span></div><div class="stat"><strong th:text="${summary.serviceCount}">2</strong><span>Services</span></div><div class="stat"><strong th:text="${summary.availableSlotCount}">2</strong><span>Open slots</span></div></div></div>
+  </section>
+</main>
+</body></html>

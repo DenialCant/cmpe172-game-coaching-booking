@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Login - Skill Cap</title><link rel="stylesheet" th:href="@{/css/app.css}"></head>
+<body>
+<nav class="nav"><div class="container nav-inner"><a class="brand" th:href="@{/}">Skill Cap</a><a th:href="@{/slots}">Available Slots</a></div></nav>
+<main class="container"><section class="card auth-card"><div class="eyebrow">Welcome back</div><h2>Login to Skill Cap</h2><p class="notice" th:if="${param.logout}">You have been logged out.</p><p class="error-text" th:if="${loginError}" th:text="${loginError}"></p>
+<form class="stack" th:action="@{/login}" th:object="${loginForm}" method="post"><label>Username<input th:field="*{username}" autocomplete="username"><span class="error-text" th:errors="*{username}"></span></label><label>Password<input type="password" th:field="*{password}" autocomplete="current-password"><span class="error-text" th:errors="*{password}"></span></label><button class="button" type="submit">Login</button></form>
+<p class="muted">Demo accounts: player1 / password or coachclark / password</p></section></main>
+</body></html>

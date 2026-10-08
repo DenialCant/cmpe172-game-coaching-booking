@@ -1,0 +1,4 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Error - Skill Cap</title><link rel="stylesheet" th:href="@{/css/app.css}"></head>
+<body><nav class="nav"><div class="container nav-inner"><a class="brand" th:href="@{/}">Skill Cap</a></div></nav><main class="container"><section class="card auth-card center"><div class="eyebrow" th:text="${status}">400</div><h2 th:text="${title != null ? title : error}">Request error</h2><p class="lead" th:text="${message}">The request could not be completed.</p><a class="button" th:href="@{/}">Return Home</a></section></main></body></html>
