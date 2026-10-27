@@ -78,3 +78,27 @@ CREATE INDEX IF NOT EXISTS idx_slots_filter
 
 CREATE INDEX IF NOT EXISTS idx_appointments_user
     ON appointments(user_id, created_at);
+
+
+-- Durable fallback. Queued in the SAME transaction as the booking/cancellation.
+CREATE TABLE IF NOT EXISTS notification_outbox (
+    notification_id VARCHAR(100) PRIMARY KEY,
+    recipient VARCHAR(320) NOT NULL,
+    notification_type VARCHAR(40) NOT NULL,
+    message VARCHAR(1000) NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'PENDING'
+        CHECK (status IN ('PENDING', 'DELIVERED')),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    delivered_at TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS idx_notification_outbox_pending
+    ON notification_outbox(status, created_at);
+
+-- Receiver-owned state for the mock service. It deduplicates across restarts.
+CREATE TABLE IF NOT EXISTS mock_notification_receipts (
+    notification_id VARCHAR(100) PRIMARY KEY,
+    recipient VARCHAR(320) NOT NULL,
+    notification_type VARCHAR(40) NOT NULL,
+    message VARCHAR(1000) NOT NULL,
+    accepted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

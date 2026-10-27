@@ -30,17 +30,17 @@ WHERE user_id = (SELECT user_id FROM users WHERE username = 'coachclark')
 AND NOT EXISTS (SELECT 1 FROM services WHERE service_name = 'Valorant VOD Review');
 
 INSERT INTO availability_slots (provider_id, service_id, start_time, end_time)
-SELECT s.provider_id, s.service_id, '2026-10-15 15:00:00', '2026-10-15 16:00:00'
+SELECT s.provider_id, s.service_id, CURRENT_DATE + INTERVAL '7 days 15 hours', CURRENT_DATE + INTERVAL '7 days 16 hours'
 FROM services s
 WHERE s.service_name = 'Valorant Aim Coaching'
 AND NOT EXISTS (
-    SELECT 1 FROM availability_slots WHERE start_time = '2026-10-15 15:00:00'
+    SELECT 1 FROM availability_slots WHERE provider_id = s.provider_id AND service_id = s.service_id
 );
 
 INSERT INTO availability_slots (provider_id, service_id, start_time, end_time)
-SELECT s.provider_id, s.service_id, '2026-10-16 17:00:00', '2026-10-16 17:45:00'
+SELECT s.provider_id, s.service_id, CURRENT_DATE + INTERVAL '8 days 17 hours', CURRENT_DATE + INTERVAL '8 days 17 hours 45 minutes'
 FROM services s
 WHERE s.service_name = 'Valorant VOD Review'
 AND NOT EXISTS (
-    SELECT 1 FROM availability_slots WHERE start_time = '2026-10-16 17:00:00'
+    SELECT 1 FROM availability_slots WHERE provider_id = s.provider_id AND service_id = s.service_id
 );

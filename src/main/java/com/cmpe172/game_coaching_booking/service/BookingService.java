@@ -1,81 +1,73 @@
 package com.cmpe172.game_coaching_booking.service;
 
-import java.time.LocalDateTime;
 import java.util.List;
-
-import org.springframework.dao.DataIntegrityViolationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.cmpe172.game_coaching_booking.domain.AvailabilitySlot;
 import com.cmpe172.game_coaching_booking.dto.AppointmentView;
-import com.cmpe172.game_coaching_booking.exception.ForbiddenException;
-import com.cmpe172.game_coaching_booking.exception.InvalidRequestException;
-import com.cmpe172.game_coaching_booking.exception.NotFoundException;
-import com.cmpe172.game_coaching_booking.exception.SlotConflictException;
+import com.cmpe172.game_coaching_booking.notification.NotificationDispatcher;
+import com.cmpe172.game_coaching_booking.notification.NotificationRequest;
+import com.cmpe172.game_coaching_booking.observability.SchedulerMetrics;
 import com.cmpe172.game_coaching_booking.repository.AppointmentRepository;
-import com.cmpe172.game_coaching_booking.repository.AppointmentRepository.AppointmentState;
-import com.cmpe172.game_coaching_booking.repository.AvailabilitySlotRepository;
 
 @Service
 public class BookingService {
+    private static final Logger log = LoggerFactory.getLogger(BookingService.class);
+    private final BookingTransactionService transactions;
+    private final AppointmentRepository appointments;
+    private final NotificationDispatcher dispatcher;
+    private final SchedulerMetrics metrics;
 
-    private final AvailabilitySlotRepository slotRepository;
-    private final AppointmentRepository appointmentRepository;
-
-    public BookingService(AvailabilitySlotRepository slotRepository,
-            AppointmentRepository appointmentRepository) {
-        this.slotRepository = slotRepository;
-        this.appointmentRepository = appointmentRepository;
+    public BookingService(BookingTransactionService transactions, AppointmentRepository appointments,
+            NotificationDispatcher dispatcher, SchedulerMetrics metrics) {
+        this.transactions = transactions;
+        this.appointments = appointments;
+        this.dispatcher = dispatcher;
+        this.metrics = metrics;
     }
 
-    @Transactional(isolation = Isolation.READ_COMMITTED)
+    // Suspend any caller transaction. The separate transaction bean MUST commit
+    // before it returns; notification HTTP calls therefore hold no transaction/slot lock.
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public void book(int userId, int slotId) {
-        if (userId <= 0 || slotId <= 0) {
-            throw new InvalidRequestException("A valid user and slot are required");
-        }
-
-        // PostgreSQL holds this row lock until the transaction commits or rolls back.
-        AvailabilitySlot slot = slotRepository.findByIdForUpdate(slotId)
-                .orElseThrow(() -> new NotFoundException("The selected slot was not found"));
-
-        if (!slot.getStartTime().isAfter(LocalDateTime.now())) {
-            throw new InvalidRequestException("Past slots cannot be booked");
-        }
-        if (appointmentRepository.hasBookedAppointment(slotId)) {
-            throw new SlotConflictException("This slot was already booked by another customer");
-        }
-
+        long started = System.nanoTime();
         try {
-            appointmentRepository.create(userId, slotId);
-        } catch (DataIntegrityViolationException exception) {
-            throw new SlotConflictException("This slot was already booked by another customer");
+            NotificationRequest request;
+            try {
+                request = transactions.book(userId, slotId);
+            } catch (RuntimeException exception) {
+                metrics.bookingFailed();
+                log.warn("Booking rejected slotId={} reason={}", slotId, exception.getClass().getSimpleName());
+                throw exception;
+            }
+            metrics.bookingSucceeded();
+            log.info("Booking committed slotId={} notificationId={}", slotId, request.notificationId());
+            dispatcher.dispatch(request);
+        } finally {
+            // Includes notification wait time and failed attempts; service-level latency.
+            metrics.recordBookingLatency(System.nanoTime() - started);
         }
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public void cancel(int userId, int appointmentId) {
-        AppointmentState state = appointmentRepository.findState(appointmentId)
-                .orElseThrow(() -> new NotFoundException("Appointment not found"));
-        if (state.userId() != userId) {
-            throw new ForbiddenException("You can only cancel your own appointments");
-        }
-        if (!"BOOKED".equals(state.status())) {
-            throw new SlotConflictException("Only a booked appointment can be cancelled");
-        }
-        appointmentRepository.cancel(appointmentId, userId);
+        NotificationRequest request = transactions.cancel(userId, appointmentId);
+        metrics.cancellationSucceeded();
+        log.info("Cancellation committed appointmentId={} notificationId={}", appointmentId, request.notificationId());
+        dispatcher.dispatch(request);
     }
 
     @Transactional
     public List<AppointmentView> customerAppointments(int userId) {
-        appointmentRepository.markPastAppointmentsCompleted();
-        return appointmentRepository.findForCustomer(userId);
+        appointments.markPastAppointmentsCompleted();
+        return appointments.findForCustomer(userId);
     }
 
     @Transactional
     public List<AppointmentView> providerAppointments(int providerId) {
-        appointmentRepository.markPastAppointmentsCompleted();
-        return appointmentRepository.findForProvider(providerId);
+        appointments.markPastAppointmentsCompleted();
+        return appointments.findForProvider(providerId);
     }
 }

@@ -1,6 +1,9 @@
 package com.cmpe172.game_coaching_booking.repository;
 
 import java.util.List;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import com.cmpe172.game_coaching_booking.notification.NotificationRequest;
+import com.cmpe172.game_coaching_booking.notification.NotificationType;
 import java.util.Optional;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,10 +31,35 @@ public class AppointmentRepository {
         return count != null && count > 0;
     }
 
-    public void create(int userId, int slotId) {
-        jdbcTemplate.update(
-                "INSERT INTO appointments (user_id, slot_id, status) VALUES (?, ?, 'BOOKED')",
-                userId, slotId);
+    public int create(int userId, int slotId) {
+        var keys = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            var statement = connection.prepareStatement(
+                    "INSERT INTO appointments (user_id, slot_id, status) VALUES (?, ?, 'BOOKED')",
+                    new String[] { "appointment_id" });
+            statement.setInt(1, userId);
+            statement.setInt(2, slotId);
+            return statement;
+        }, keys);
+        Number id = keys.getKey();
+        if (id == null) { throw new IllegalStateException("Appointment ID was not returned"); }
+        return id.intValue();
+    }
+
+    public NotificationRequest notificationFor(int appointmentId, NotificationType type) {
+        return jdbcTemplate.queryForObject("""
+                SELECT customer.email, service.service_name, slot.start_time
+                FROM appointments appointment
+                JOIN users customer ON customer.user_id = appointment.user_id
+                JOIN availability_slots slot ON slot.slot_id = appointment.slot_id
+                JOIN services service ON service.service_id = slot.service_id
+                WHERE appointment.appointment_id = ?
+                """, (rs, n) -> new NotificationRequest(
+                        "appointment-" + appointmentId + "-" + type.name().toLowerCase(java.util.Locale.ROOT).replace('_', '-'),
+                        rs.getString("email"), type,
+                        (type == NotificationType.BOOKING_CONFIRMATION ? "Booking confirmed: " : "Booking cancelled: ")
+                                + rs.getString("service_name") + " at " + rs.getTimestamp("start_time").toLocalDateTime()),
+                appointmentId);
     }
 
     public Optional<AppointmentState> findState(int appointmentId) {
@@ -53,12 +81,10 @@ public class AppointmentRepository {
 
     public void markPastAppointmentsCompleted() {
         jdbcTemplate.update("""
-                UPDATE appointments appointment
-                SET status = 'COMPLETED'
-                FROM availability_slots slot
-                WHERE appointment.slot_id = slot.slot_id
-                  AND appointment.status = 'BOOKED'
-                  AND slot.end_time < CURRENT_TIMESTAMP
+                UPDATE appointments SET status = 'COMPLETED'
+                WHERE status = 'BOOKED' AND slot_id IN (
+                    SELECT slot_id FROM availability_slots WHERE end_time < CURRENT_TIMESTAMP
+                )
                 """);
     }
 

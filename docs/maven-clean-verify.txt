@@ -1,0 +1,172 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------< com.cmpe172:game-coaching-booking >------------------
+[INFO] Building  0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ game-coaching-booking ---
+[INFO] Deleting /workspace/scratch/8bcd23f6f3be/work/cmpe172-game-coaching-booking-main/target
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ game-coaching-booking ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 10 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ game-coaching-booking ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 48 source files with javac [debug parameters release 17] to target/classes
+[INFO] 
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ game-coaching-booking ---
+[INFO] Copying 5 resources from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ game-coaching-booking ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 10 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ game-coaching-booking ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.cmpe172.game_coaching_booking.GameCoachingBookingApplicationTests
+13:39:19.062 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.cmpe172.game_coaching_booking.GameCoachingBookingApplicationTests]: GameCoachingBookingApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+13:39:19.148 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.cmpe172.game_coaching_booking.GameCoachingBookingApplication for test class com.cmpe172.game_coaching_booking.GameCoachingBookingApplicationTests
+13:39:19.214 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.cmpe172.game_coaching_booking.GameCoachingBookingApplicationTests]: GameCoachingBookingApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+13:39:19.216 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.cmpe172.game_coaching_booking.GameCoachingBookingApplication for test class com.cmpe172.game_coaching_booking.GameCoachingBookingApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.1)
+
+2026-10-27T13:39:19.517-07:00  INFO 184 --- [game-coaching-booking] [           main] .c.g.GameCoachingBookingApplicationTests : Starting GameCoachingBookingApplicationTests using Java 17.0.20 with PID 184 (started by root in /workspace/scratch/8bcd23f6f3be/work/cmpe172-game-coaching-booking-main)
+2026-10-27T13:39:19.518-07:00  INFO 184 --- [game-coaching-booking] [           main] .c.g.GameCoachingBookingApplicationTests : The following 1 profile is active: "test"
+2026-10-27T13:39:20.309-07:00  INFO 184 --- [game-coaching-booking] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-27T13:39:20.518-07:00  INFO 184 --- [game-coaching-booking] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:a8a6c946-8dc2-497d-8d17-45945d9b4957 user=SA
+2026-10-27T13:39:20.522-07:00  INFO 184 --- [game-coaching-booking] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-27T13:39:21.264-07:00  INFO 184 --- [game-coaching-booking] [           main] .c.g.GameCoachingBookingApplicationTests : Started GameCoachingBookingApplicationTests in 2.004 seconds (process running for 2.948)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.20 s -- in com.cmpe172.game_coaching_booking.GameCoachingBookingApplicationTests
+[INFO] Running com.cmpe172.game_coaching_booking.BookingConcurrencyTest
+2026-10-27T13:39:32.128-07:00  INFO 184 --- [game-coaching-booking] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.cmpe172.game_coaching_booking.BookingConcurrencyTest]: BookingConcurrencyTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-27T13:39:32.130-07:00  INFO 184 --- [game-coaching-booking] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.cmpe172.game_coaching_booking.GameCoachingBookingApplication for test class com.cmpe172.game_coaching_booking.BookingConcurrencyTest
+2026-10-27T13:39:32.131-07:00  INFO 184 --- [game-coaching-booking] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.cmpe172.game_coaching_booking.BookingConcurrencyTest]: BookingConcurrencyTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-27T13:39:32.132-07:00  INFO 184 --- [game-coaching-booking] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.cmpe172.game_coaching_booking.GameCoachingBookingApplication for test class com.cmpe172.game_coaching_booking.BookingConcurrencyTest
+2026-10-27T13:39:32.206-07:00  INFO 184 --- [game-coaching-booking] [pool-3-thread-2] c.c.g.service.BookingService             : Booking committed slotId=1 notificationId=appointment-1-booking-confirmation
+2026-10-27T13:39:32.210-07:00  WARN 184 --- [game-coaching-booking] [pool-3-thread-1] c.c.g.service.BookingService             : Booking rejected slotId=1 reason=SlotConflictException
+2026-10-27T13:39:32.244-07:00  WARN 184 --- [game-coaching-booking] [pool-3-thread-2] c.c.g.n.HttpNotificationGateway          : Notification attempt failed notificationId=appointment-1-booking-confirmation attempt=1 reason=ResourceAccessException
+2026-10-27T13:39:32.245-07:00  WARN 184 --- [game-coaching-booking] [pool-3-thread-2] c.c.g.n.HttpNotificationGateway          : Notification attempt failed notificationId=appointment-1-booking-confirmation attempt=2 reason=ResourceAccessException
+2026-10-27T13:39:32.245-07:00  WARN 184 --- [game-coaching-booking] [pool-3-thread-2] c.c.g.n.NotificationDispatcher           : Notification deferred notificationId=appointment-1-booking-confirmation recovery=outbox-retry
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.131 s -- in com.cmpe172.game_coaching_booking.BookingConcurrencyTest
+[INFO] Running com.cmpe172.game_coaching_booking.observability.ManagementControllerTest
+2026-10-27T13:39:32.518-07:00 ERROR 184 --- [game-coaching-booking] [           main] c.c.g.o.ManagementController             : Database health check failed reason=SQLException
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.261 s -- in com.cmpe172.game_coaching_booking.observability.ManagementControllerTest
+[INFO] Running com.cmpe172.game_coaching_booking.NotificationHttpIntegrationTest
+2026-10-27T13:39:32.525-07:00  INFO 184 --- [game-coaching-booking] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.cmpe172.game_coaching_booking.NotificationHttpIntegrationTest]: NotificationHttpIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-27T13:39:32.530-07:00  INFO 184 --- [game-coaching-booking] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.cmpe172.game_coaching_booking.GameCoachingBookingApplication for test class com.cmpe172.game_coaching_booking.NotificationHttpIntegrationTest
+2026-10-27T13:39:32.531-07:00  INFO 184 --- [game-coaching-booking] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.cmpe172.game_coaching_booking.NotificationHttpIntegrationTest]: NotificationHttpIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-27T13:39:32.532-07:00  INFO 184 --- [game-coaching-booking] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.cmpe172.game_coaching_booking.GameCoachingBookingApplication for test class com.cmpe172.game_coaching_booking.NotificationHttpIntegrationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.1)
+
+2026-10-27T13:39:32.672-07:00  INFO 184 --- [game-coaching-booking] [           main] c.c.g.NotificationHttpIntegrationTest    : Starting NotificationHttpIntegrationTest using Java 17.0.20 with PID 184 (started by root in /workspace/scratch/8bcd23f6f3be/work/cmpe172-game-coaching-booking-main)
+2026-10-27T13:39:32.672-07:00  INFO 184 --- [game-coaching-booking] [           main] c.c.g.NotificationHttpIntegrationTest    : The following 1 profile is active: "test"
+2026-10-27T13:39:32.932-07:00  INFO 184 --- [game-coaching-booking] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 0 (http)
+2026-10-27T13:39:32.945-07:00  INFO 184 --- [game-coaching-booking] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-27T13:39:32.946-07:00  INFO 184 --- [game-coaching-booking] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-10-27T13:39:32.981-07:00  INFO 184 --- [game-coaching-booking] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 305 ms
+2026-10-27T13:39:33.049-07:00  INFO 184 --- [game-coaching-booking] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-10-27T13:39:33.052-07:00  INFO 184 --- [game-coaching-booking] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection conn10: url=jdbc:h2:mem:23225c82-164e-4813-8cbe-ac8613464926 user=SA
+2026-10-27T13:39:33.052-07:00  INFO 184 --- [game-coaching-booking] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-10-27T13:39:33.238-07:00  INFO 184 --- [game-coaching-booking] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 35057 (http) with context path '/'
+2026-10-27T13:39:33.243-07:00  INFO 184 --- [game-coaching-booking] [           main] c.c.g.NotificationHttpIntegrationTest    : Started NotificationHttpIntegrationTest in 0.6 seconds (process running for 14.927)
+2026-10-27T13:39:33.266-07:00  INFO 184 --- [game-coaching-booking] [           main] c.c.g.service.BookingService             : Cancellation committed appointmentId=1 notificationId=appointment-1-cancellation-confirmation
+2026-10-27T13:39:33.339-07:00  INFO 184 --- [game-coaching-booking] [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-27T13:39:33.340-07:00  INFO 184 --- [game-coaching-booking] [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-27T13:39:33.341-07:00  INFO 184 --- [game-coaching-booking] [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-10-27T13:39:33.466-07:00  INFO 184 --- [game-coaching-booking] [o-auto-1-exec-1] c.c.g.n.MockNotificationController       : Mock notification accepted notificationId=appointment-1-cancellation-confirmation type=CANCELLATION_CONFIRMATION
+2026-10-27T13:39:33.492-07:00  INFO 184 --- [game-coaching-booking] [           main] c.c.g.n.NotificationDispatcher           : Notification delivered notificationId=appointment-1-cancellation-confirmation type=CANCELLATION_CONFIRMATION
+2026-10-27T13:39:33.502-07:00  INFO 184 --- [game-coaching-booking] [o-auto-1-exec-2] c.c.g.n.MockNotificationController       : Mock notification accepted notificationId=appointment-1-booking-confirmation type=BOOKING_CONFIRMATION
+2026-10-27T13:39:33.505-07:00  INFO 184 --- [game-coaching-booking] [           main] c.c.g.n.NotificationDispatcher           : Notification delivered notificationId=appointment-1-booking-confirmation type=BOOKING_CONFIRMATION
+2026-10-27T13:39:33.611-07:00  WARN 184 --- [game-coaching-booking] [o-auto-1-exec-5] c.c.g.n.NotificationErrorHandler         : Notification request rejected reason=invalid-payload
+2026-10-27T13:39:33.633-07:00  WARN 184 --- [game-coaching-booking] [           main] c.c.g.n.NotificationDispatcher           : Notification deferred notificationId=appointment-2-booking-confirmation recovery=outbox-retry
+2026-10-27T13:39:33.643-07:00  INFO 184 --- [game-coaching-booking] [o-auto-1-exec-4] c.c.g.n.MockNotificationController       : Mock notification accepted notificationId=appointment-2-booking-confirmation type=BOOKING_CONFIRMATION
+2026-10-27T13:39:33.645-07:00  INFO 184 --- [game-coaching-booking] [           main] c.c.g.n.NotificationDispatcher           : Notification delivered notificationId=appointment-2-booking-confirmation type=BOOKING_CONFIRMATION
+2026-10-27T13:39:33.660-07:00  INFO 184 --- [game-coaching-booking] [           main] c.c.g.service.BookingService             : Booking committed slotId=1 notificationId=appointment-3-booking-confirmation
+2026-10-27T13:39:33.661-07:00 ERROR 184 --- [game-coaching-booking] [           main] c.c.g.n.NotificationDispatcher           : Notification dispatch failed notificationId=appointment-3-booking-confirmation reason=IllegalStateException
+2026-10-27T13:39:33.661-07:00  WARN 184 --- [game-coaching-booking] [           main] c.c.g.n.NotificationDispatcher           : Notification deferred notificationId=appointment-3-booking-confirmation recovery=outbox-retry
+2026-10-27T13:39:33.683-07:00  INFO 184 --- [game-coaching-booking] [o-auto-1-exec-6] c.c.g.n.MockNotificationController       : Mock notification accepted notificationId=test-123 type=BOOKING_CONFIRMATION
+2026-10-27T13:39:33.737-07:00  INFO 184 --- [game-coaching-booking] [           main] c.c.g.service.BookingService             : Booking committed slotId=1 notificationId=appointment-4-booking-confirmation
+2026-10-27T13:39:33.747-07:00  INFO 184 --- [game-coaching-booking] [-auto-1-exec-10] c.c.g.n.MockNotificationController       : Mock notification accepted notificationId=appointment-4-booking-confirmation type=BOOKING_CONFIRMATION
+2026-10-27T13:39:33.750-07:00  INFO 184 --- [game-coaching-booking] [           main] c.c.g.n.NotificationDispatcher           : Notification delivered notificationId=appointment-4-booking-confirmation type=BOOKING_CONFIRMATION
+2026-10-27T13:39:33.763-07:00  INFO 184 --- [game-coaching-booking] [           main] c.c.g.n.NotificationDispatcher           : Notification delivered notificationId=appointment-4-booking-confirmation type=BOOKING_CONFIRMATION
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.296 s -- in com.cmpe172.game_coaching_booking.NotificationHttpIntegrationTest
+[INFO] Running com.cmpe172.game_coaching_booking.config.AuthInterceptorTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.cmpe172.game_coaching_booking.config.AuthInterceptorTest
+[INFO] Running com.cmpe172.game_coaching_booking.notification.HttpNotificationGatewayTest
+2026-10-27T13:39:33.903-07:00  WARN 184 --- [game-coaching-booking] [           main] c.c.g.n.HttpNotificationGateway          : Notification attempt failed notificationId=appointment-10-booking attempt=1 reason=ResourceAccessException
+2026-10-27T13:39:33.956-07:00  WARN 184 --- [game-coaching-booking] [           main] c.c.g.n.HttpNotificationGateway          : Notification attempt failed notificationId=appointment-10-booking attempt=2 reason=ResourceAccessException
+2026-10-27T13:39:33.987-07:00  WARN 184 --- [game-coaching-booking] [           main] c.c.g.n.HttpNotificationGateway          : Notification attempt failed notificationId=appointment-10-booking attempt=1 reason=TooManyRequests
+2026-10-27T13:39:34.001-07:00  WARN 184 --- [game-coaching-booking] [           main] c.c.g.n.HttpNotificationGateway          : Notification attempt failed notificationId=appointment-10-booking attempt=1 reason=Forbidden
+2026-10-27T13:39:34.013-07:00  WARN 184 --- [game-coaching-booking] [           main] c.c.g.n.HttpNotificationGateway          : Notification attempt failed notificationId=appointment-10-booking attempt=1 reason=ServiceUnavailable
+2026-10-27T13:39:34.017-07:00  WARN 184 --- [game-coaching-booking] [           main] c.c.g.n.HttpNotificationGateway          : Notification attempt failed notificationId=appointment-10-booking attempt=2 reason=ServiceUnavailable
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.191 s -- in com.cmpe172.game_coaching_booking.notification.HttpNotificationGatewayTest
+[INFO] Running com.cmpe172.game_coaching_booking.service.ProviderServiceTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.070 s -- in com.cmpe172.game_coaching_booking.service.ProviderServiceTest
+[INFO] Running com.cmpe172.game_coaching_booking.service.BookingServiceTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 s -- in com.cmpe172.game_coaching_booking.service.BookingServiceTest
+[INFO] Running com.cmpe172.game_coaching_booking.PostgresIntegrationTest
+[WARNING] Tests run: 2, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 0 s -- in com.cmpe172.game_coaching_booking.PostgresIntegrationTest
+[INFO] Running com.cmpe172.game_coaching_booking.NotificationOutageIntegrationTest
+2026-10-27T13:39:34.154-07:00  INFO 184 --- [game-coaching-booking] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.cmpe172.game_coaching_booking.NotificationOutageIntegrationTest]: NotificationOutageIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-27T13:39:34.156-07:00  INFO 184 --- [game-coaching-booking] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.cmpe172.game_coaching_booking.GameCoachingBookingApplication for test class com.cmpe172.game_coaching_booking.NotificationOutageIntegrationTest
+2026-10-27T13:39:34.156-07:00  INFO 184 --- [game-coaching-booking] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.cmpe172.game_coaching_booking.NotificationOutageIntegrationTest]: NotificationOutageIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-27T13:39:34.157-07:00  INFO 184 --- [game-coaching-booking] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.cmpe172.game_coaching_booking.GameCoachingBookingApplication for test class com.cmpe172.game_coaching_booking.NotificationOutageIntegrationTest
+2026-10-27T13:39:34.351-07:00  INFO 184 --- [game-coaching-booking] [o-auto-1-exec-5] c.c.g.service.BookingService             : Booking committed slotId=1 notificationId=appointment-5-booking-confirmation
+2026-10-27T13:39:34.352-07:00  WARN 184 --- [game-coaching-booking] [o-auto-1-exec-5] c.c.g.n.HttpNotificationGateway          : Notification attempt failed notificationId=appointment-5-booking-confirmation attempt=1 reason=ResourceAccessException
+2026-10-27T13:39:34.353-07:00  WARN 184 --- [game-coaching-booking] [o-auto-1-exec-5] c.c.g.n.HttpNotificationGateway          : Notification attempt failed notificationId=appointment-5-booking-confirmation attempt=2 reason=ResourceAccessException
+2026-10-27T13:39:34.353-07:00  WARN 184 --- [game-coaching-booking] [o-auto-1-exec-5] c.c.g.n.NotificationDispatcher           : Notification deferred notificationId=appointment-5-booking-confirmation recovery=outbox-retry
+2026-10-27T13:39:34.368-07:00  INFO 184 --- [game-coaching-booking] [o-auto-1-exec-4] c.c.g.service.BookingService             : Cancellation committed appointmentId=5 notificationId=appointment-5-cancellation-confirmation
+2026-10-27T13:39:34.370-07:00  WARN 184 --- [game-coaching-booking] [o-auto-1-exec-4] c.c.g.n.HttpNotificationGateway          : Notification attempt failed notificationId=appointment-5-cancellation-confirmation attempt=1 reason=ResourceAccessException
+2026-10-27T13:39:34.371-07:00  WARN 184 --- [game-coaching-booking] [o-auto-1-exec-4] c.c.g.n.HttpNotificationGateway          : Notification attempt failed notificationId=appointment-5-cancellation-confirmation attempt=2 reason=ResourceAccessException
+2026-10-27T13:39:34.371-07:00  WARN 184 --- [game-coaching-booking] [o-auto-1-exec-4] c.c.g.n.NotificationDispatcher           : Notification deferred notificationId=appointment-5-cancellation-confirmation recovery=outbox-retry
+2026-10-27T13:39:34.715-07:00  INFO 184 --- [game-coaching-booking] [-auto-1-exec-10] c.c.g.service.BookingService             : Booking committed slotId=1 notificationId=appointment-6-booking-confirmation
+2026-10-27T13:39:34.717-07:00  WARN 184 --- [game-coaching-booking] [-auto-1-exec-10] c.c.g.n.HttpNotificationGateway          : Notification attempt failed notificationId=appointment-6-booking-confirmation attempt=1 reason=ResourceAccessException
+2026-10-27T13:39:34.717-07:00  WARN 184 --- [game-coaching-booking] [-auto-1-exec-10] c.c.g.n.HttpNotificationGateway          : Notification attempt failed notificationId=appointment-6-booking-confirmation attempt=2 reason=ResourceAccessException
+2026-10-27T13:39:34.717-07:00  WARN 184 --- [game-coaching-booking] [-auto-1-exec-10] c.c.g.n.NotificationDispatcher           : Notification deferred notificationId=appointment-6-booking-confirmation recovery=outbox-retry
+2026-10-27T13:39:34.735-07:00  INFO 184 --- [game-coaching-booking] [           main] c.c.g.service.BookingService             : Booking committed slotId=1 notificationId=appointment-7-booking-confirmation
+2026-10-27T13:39:34.736-07:00  WARN 184 --- [game-coaching-booking] [           main] c.c.g.n.HttpNotificationGateway          : Notification attempt failed notificationId=appointment-7-booking-confirmation attempt=1 reason=ResourceAccessException
+2026-10-27T13:39:34.738-07:00  WARN 184 --- [game-coaching-booking] [           main] c.c.g.n.HttpNotificationGateway          : Notification attempt failed notificationId=appointment-7-booking-confirmation attempt=2 reason=ResourceAccessException
+2026-10-27T13:39:34.739-07:00  WARN 184 --- [game-coaching-booking] [           main] c.c.g.n.NotificationDispatcher           : Notification deferred notificationId=appointment-7-booking-confirmation recovery=outbox-retry
+2026-10-27T13:39:34.741-07:00  WARN 184 --- [game-coaching-booking] [           main] c.c.g.service.BookingService             : Booking rejected slotId=1 reason=SlotConflictException
+2026-10-27T13:39:34.751-07:00  WARN 184 --- [game-coaching-booking] [           main] c.c.g.service.BookingService             : Booking rejected slotId=1 reason=DataIntegrityViolationException
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.601 s -- in com.cmpe172.game_coaching_booking.NotificationOutageIntegrationTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 26, Failures: 0, Errors: 0, Skipped: 2
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.5.1:jar (default-jar) @ game-coaching-booking ---
+[INFO] Building jar: /workspace/scratch/8bcd23f6f3be/work/cmpe172-game-coaching-booking-main/target/game-coaching-booking-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot:4.1.1:repackage (repackage) @ game-coaching-booking ---
+[INFO] Replacing main artifact /workspace/scratch/8bcd23f6f3be/work/cmpe172-game-coaching-booking-main/target/game-coaching-booking-0.0.1-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /workspace/scratch/8bcd23f6f3be/work/cmpe172-game-coaching-booking-main/target/game-coaching-booking-0.0.1-SNAPSHOT.jar.original
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  20.123 s
+[INFO] Finished at: 2026-10-27T13:39:35-07:00
+[INFO] ------------------------------------------------------------------------

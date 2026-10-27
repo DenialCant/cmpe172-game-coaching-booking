@@ -30,11 +30,14 @@ class BookingServiceTest {
     @Mock
     private AppointmentRepository appointmentRepository;
 
-    private BookingService bookingService;
+    @Mock
+    private com.cmpe172.game_coaching_booking.notification.NotificationOutboxRepository outbox;
+
+    private BookingTransactionService bookingService;
 
     @BeforeEach
     void setUp() {
-        bookingService = new BookingService(slotRepository, appointmentRepository);
+        bookingService = new BookingTransactionService(slotRepository, appointmentRepository, outbox);
     }
 
     @Test
@@ -43,10 +46,17 @@ class BookingServiceTest {
                 LocalDateTime.now().plusDays(1), LocalDateTime.now().plusDays(1).plusHours(1));
         when(slotRepository.findByIdForUpdate(7)).thenReturn(Optional.of(slot));
         when(appointmentRepository.hasBookedAppointment(7)).thenReturn(false);
+        when(appointmentRepository.create(10, 7)).thenReturn(23);
+        var request = new com.cmpe172.game_coaching_booking.notification.NotificationRequest(
+                "appointment-23-booking-confirmation", "one@example.com",
+                com.cmpe172.game_coaching_booking.notification.NotificationType.BOOKING_CONFIRMATION, "Confirmed");
+        when(appointmentRepository.notificationFor(23,
+                com.cmpe172.game_coaching_booking.notification.NotificationType.BOOKING_CONFIRMATION)).thenReturn(request);
 
         bookingService.book(10, 7);
 
         verify(appointmentRepository).create(10, 7);
+        verify(outbox).enqueue(request);
     }
 
     @Test
