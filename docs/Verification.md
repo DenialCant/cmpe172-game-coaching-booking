@@ -14,15 +14,30 @@ Validation date: October 27, 2026. Java 17 / Spring Boot 4.1.1.
 - Executable Spring Boot JAR built and repackaged successfully.
 - POM XML, Compose YAML, workflow push/pull_request triggers: parsed and checked.
 
-## Environment limits and remaining evidence
+## Verified on the student's Windows / Docker Desktop environment
 
-- Two PostgreSQL-specific tests were skipped locally because a disposable PostgreSQL
-  server was not available. CI is configured to supply PostgreSQL 16 and run them.
-- Docker is unavailable in this workspace. Compose was checked structurally; an
-  actual image build/container startup must still be checked in Docker Desktop or CI.
-- GitHub Actions has not been run here; push these files and inspect its result.
-- Record the minimum five-minute code walkthrough and add its link before submitting.
-- No Docker/CI screenshots, real email delivery, or external deployment are claimed.
+- Local Maven clean verify: BUILD SUCCESS, 26 discovered, 24 passed, 2 skipped.
+- Docker image build: passed, including Maven verify and compilation of the health probe.
+- Docker Compose: app and PostgreSQL containers both healthy.
+- Containerized booking and cancellation: each committed, accepted by the mock,
+  and delivered with its own notification type (user-provided terminal logs).
+- Manual outage: disabling the mock produced HTTP 404; appointment 2 still committed
+  at 21:18:07 UTC and its stable notification ID remained pending.
+- Recovery: after re-enabling the mock and recreating only the app container, the
+  scheduled worker delivered appointment-2-booking-confirmation at 21:21:10 UTC.
+  No replacement booking was made. This confirms persistence across app recreation.
+- Git push: implementation commit af64ac2 reached origin/main.
+- GitHub Actions: run #1 for af64ac2 passed in 1m29s, verified from the supplied
+  screenshot. The workflow includes Maven verify with PostgreSQL 16, Compose
+  validation, and a Docker image build. Exact CI test totals were not separately
+  captured; local counts above are from the actual Maven output.
+
+## Remaining submission items
+
+- Record the minimum five-minute code walkthrough and add its link.
+- Copy these final docs into the local project and commit/push the documentation update.
+- Package final code, report, and diagram as CMPE172_Milestone3_Daniel_Khant.zip.
+- This is mock delivery; no real email/SMS or external cloud deployment is claimed.
 
 ## Per-class results
 

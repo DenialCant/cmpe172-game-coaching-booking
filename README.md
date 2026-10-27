@@ -159,8 +159,8 @@ H2 uses a generated BOOKED-only unique key to model the PostgreSQL partial index
 The conditional PostgreSQL tests run the production SQL against PostgreSQL 16 in CI.
 
 `.github/workflows/ci.yml` builds and tests on every push and pull request, validates
-Compose, and builds the Docker image. It must be pushed before a real GitHub Actions
-run exists. No hosting service, paid API, or cloud deployment is required by this PDF.
+Compose, and builds the Docker image. The implementation was pushed as `af64ac2`, and Actions run #1 passed.
+The student also verified Docker startup, book/cancel notifications, and outage recovery. No hosting service, paid API, or cloud deployment is required by this PDF.
 
 ## Files for your walkthrough
 
@@ -177,5 +177,5 @@ run exists. No hosting service, paid API, or cloud deployment is required by thi
 | `Dockerfile`, `docker-compose.yml`, `.github/workflows/ci.yml` | Delivery |
 
 See `docs/` for the report, distribution diagram, verification notes, and code-demo
-script. Add your repository/video links and real Docker/Actions evidence before
-submission. The walkthrough must explain code for at least five minutes.
+script. The report and verification notes include the observed Docker/Actions results.
+Add your recorded video link before submission. The walkthrough must explain code for at least five minutes.

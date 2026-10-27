@@ -138,10 +138,32 @@ assertEquals("BOOKED", jdbc.queryForObject("SELECT status FROM appointments", St
 assertEquals(1, pending());
 ```
 
-Compose/workflow XML/YAML structures were checked. Docker startup, PostgreSQL-specific
-runtime tests, and a real GitHub Actions run were not executed in this workspace.
-Run Docker Desktop/Compose, push and inspect Actions, and add the minimum five-minute
-code-walkthrough link plus real runtime evidence before submission.
+## Verified Docker deployment and CI
+
+The student's Docker Desktop output confirms that the image built successfully,
+including Maven verify and health-probe compilation. Compose started the app and
+PostgreSQL 16, and both containers became healthy. Booking and cancellation in
+this deployment each emitted accepted/delivered notifications of the correct type.
+
+For the manual failure scenario, the mock controller was disabled (HTTP 404).
+Appointment 2 committed at 21:18:07 UTC on October 27, 2026, while its notification
+was deferred. After the mock was enabled and only the app container was recreated,
+the scheduled worker accepted/delivered appointment-2-booking-confirmation at
+21:21:10 UTC. The event survived the app recreation; no new booking was required.
+The automated outage integration test separately uses an unreachable TCP endpoint.
+
+GitHub push succeeded for implementation commit af64ac2 on main. The provided
+Actions screenshot shows run #1 passed in 1 minute 29 seconds. This workflow runs
+Maven verify with a PostgreSQL 16 service, validates Compose, and builds the Docker
+image. Exact CI test totals were not separately captured. The 24 passed / 2 skipped
+counts above describe the local Maven run, not the CI run.
+
+## Remaining before submission
+
+Record the minimum five-minute code walkthrough and replace the video placeholder
+with its URL. Copy the updated docs into the local project and commit/push the
+final documentation. Submit CMPE172_Milestone3_Daniel_Khant.zip, the repository
+link, and the video link. No real email/SMS or external hosting is claimed.
 
 ## AI tools used
 
